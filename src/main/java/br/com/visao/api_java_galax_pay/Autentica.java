@@ -16,13 +16,14 @@ import org.json.JSONObject;
 */
 public class Autentica {
 
+//Dados de SANDBOX
    private final String client_id = "5473";
    private final String client_secret = "83Mw5u8988Qj6fZqS4Z8K7LzOo1j28S706R0BeFe";
    private final String basicAuth = Base64.getEncoder().encodeToString(((client_id + ':' + client_secret).getBytes()));
    
    //66716bf7f4021097c378a2745cec9442d07ea6c3
 
-   public String geraToken() {
+   public String getToken() {
        String access_token = "";
        
        //System.err.println("BASE: "+basicAuth);

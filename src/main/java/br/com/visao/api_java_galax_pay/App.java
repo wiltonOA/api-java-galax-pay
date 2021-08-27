@@ -9,7 +9,7 @@ public class App
     public static void main( String[] args )
     {
         Autentica aut = new Autentica();
-        String token = aut.geraToken();
+        String token = aut.getToken();
         System.out.println("Token: "+token);
     }
 }
