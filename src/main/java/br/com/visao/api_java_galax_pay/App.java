@@ -11,5 +11,9 @@ public class App
         Autentica aut = new Autentica();
         String token = aut.getToken();
         System.out.println("Token: "+token);
+        
+        Cobrancas cobranca = new Cobrancas();
+        
+        String resultado = cobranca.geraCobranca(token);
     }
 }

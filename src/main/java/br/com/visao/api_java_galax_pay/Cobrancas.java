@@ -7,6 +7,8 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
+import org.json.JSONObject;
+
 
 public class Cobrancas {
 	
@@ -68,5 +70,19 @@ public class Cobrancas {
 		
 		return responseBuilder.toString();
 		
+	}
+	
+	public int getgalaxPayId(String cobranca) {
+		int galaxPayId = 0;
+		try {
+			JSONObject jsonObj = new JSONObject(cobranca);
+			JSONObject loc = (JSONObject) jsonObj.get("galaxPayId");
+			
+			galaxPayId = loc.getInt("id");
+		
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return galaxPayId;
 	}
 }
