@@ -8,12 +8,11 @@ public class App
 {
     public static void main( String[] args )
     {
-        Autentica aut = new Autentica();
-        String token = aut.getToken();
-        System.out.println("Token: "+token);
+        String token = new Autentica().getToken();
+        System.out.println("TOKEN: "+token);
         
-        Cobrancas cobranca = new Cobrancas();
+        String resultado = new Cobrancas().geraCobranca(token);
         
-        String resultado = cobranca.geraCobranca(token);
+        System.out.println("RESULTADO: "+resultado);
     }
 }
