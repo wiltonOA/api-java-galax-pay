@@ -9,3 +9,5 @@ Fluxo do projeto:
 2º Geramos uma cobranca avulsa com PIX na API [POST - [https://api.sandbox.cloud.galaxpay.com.br/v2/charges](https://api.sandbox.cloud.galaxpay.com.br/v2/charges)]
 
 3º Imprimimos no console o retorno da API.
+
+[GalaxPay Seu negócio recorrente](https://www.galaxpay.com.br/gerar-boleto-registrado-gratis/visao-software)
