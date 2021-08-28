@@ -1,4 +1,4 @@
-package br.com.visao_api_java_galax_pay.controller;
+package br.com.visao.api_java_galax_pay.controller;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates

@@ -1,5 +1,5 @@
 package br.com.visao.api_java_galax_pay;
-import br.com.visao_api_java_galax_pay.controller.CobrancaController;
+import br.com.visao.api_java_galax_pay.controller.CobrancaController;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
