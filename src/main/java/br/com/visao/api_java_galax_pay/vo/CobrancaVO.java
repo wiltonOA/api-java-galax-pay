@@ -1,9 +1,9 @@
-package br.com.visao.api_java_galax_pay.vo;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.com.visao.API_GALAXPAY;
 
 import java.io.Serializable;
 
@@ -17,36 +17,35 @@ public class CobrancaVO implements Serializable{
 //    "additionalInfo": "VENDA 52881",
 //    "payday": "2021-08-27",
 //    "payedOutsideGalaxPay": false,
-//    "mainPaymentMethodId": "pix",
+//    "mainPaymentMethodId": "boleto",
     
     private String myId;
     private Integer value;
     private String additionalInfo;
     private String payday;
-    private ParticipanteVO participante;
     private Boolean payedOutsideGalaxPay;
     private String mainPaymentMethodId;
-    private MetodoPgtoPixVO metoPgtoPix;
+    private ParticipanteVO Customer;
+    private PagamentoMetodoBoletoVO PaymentMethodBoleto;
     
     
-
     public CobrancaVO() {
     }
 
-    public MetodoPgtoPixVO getMetoPgtoPix() {
-        return metoPgtoPix;
+    public PagamentoMetodoBoletoVO getMetoPgtoPix() {
+        return PaymentMethodBoleto;
     }
 
-    public void setMetoPgtoPix(MetodoPgtoPixVO metoPgtoPix) {
-        this.metoPgtoPix = metoPgtoPix;
+    public void setMetoPgtoPix(PagamentoMetodoBoletoVO metoPgtoPix) {
+        this.PaymentMethodBoleto = metoPgtoPix;
     }
 
     public ParticipanteVO getParticipante() {
-        return participante;
+        return Customer;
     }
 
     public void setParticipante(ParticipanteVO participante) {
-        this.participante = participante;
+        this.Customer = participante;
     }
 
     public String getMyId() {

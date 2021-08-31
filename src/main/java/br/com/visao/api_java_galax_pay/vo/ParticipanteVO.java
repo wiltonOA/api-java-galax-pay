@@ -1,19 +1,19 @@
-package br.com.visao.api_java_galax_pay.vo;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.com.visao.API_GALAXPAY;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
  *
- * @author WILTON
+ * @author WILTON OLIVEIRA
  */
-public class ParticipanteVO implements Serializable{
-    
+public class ParticipanteVO implements Serializable {
+
 //    "Customer": {
 //        "myId": "1",
 //        "name": "CONSUMIDOR",
@@ -25,12 +25,12 @@ public class ParticipanteVO implements Serializable{
 //            31983890110
 //        ]
 //    }
-    
     private String myId;
     private String name;
     private String document;
-    private List<ParticipanteEmail> email;
-    private List<ParticipanteFones> phones;
+    private List<String> emails;
+    private List<String> phones;
+    private ParticipanteEnderecoVO Address;
 
     public String getMyId() {
         return myId;
@@ -56,21 +56,28 @@ public class ParticipanteVO implements Serializable{
         this.document = document;
     }
 
-    public List<ParticipanteEmail> getEmail() {
-        return email;
+    public List<String> getEmail() {
+        return emails;
     }
 
-    public void setEmail(List<ParticipanteEmail> email) {
-        this.email = email;
+    public void setEmail(List<String> emails) {
+        this.emails = emails;
     }
 
-    public List<ParticipanteFones> getPhones() {
+    public List<String> getPhones() {
         return phones;
     }
 
-    public void setPhones(List<ParticipanteFones> phones) {
+    public void setPhones(List<String> phones) {
         this.phones = phones;
     }
 
-    
+    public ParticipanteEnderecoVO getAddress() {
+        return Address;
+    }
+
+    public void setAddress(ParticipanteEnderecoVO Address) {
+        this.Address = Address;
+    }
+
 }
