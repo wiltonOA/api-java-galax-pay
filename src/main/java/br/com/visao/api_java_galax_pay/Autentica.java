@@ -1,9 +1,9 @@
-package br.com.visao.api_java_galax_pay;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.com.visao.API_GALAXPAY;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -13,9 +13,10 @@ import java.util.Base64;
 import org.json.JSONObject;
 import javax.net.ssl.HttpsURLConnection;
 
+
 /**
  *
- * @author WILTON
+ * @author WILTON OLIVEIRA
  */
 public class Autentica {
     
@@ -37,12 +38,13 @@ public class Autentica {
 
             URL url = new URL("https://api.sandbox.cloud.galaxpay.com.br/v2/token"); //        
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.addRequestProperty("User-Agent", "API Software ERP");
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
             conn.setRequestProperty("Authorization", "Basic " + basicAuth);
             
-            String input = "{\n    \"grant_type\": \"authorization_code\",\n    \"scope\": \"customers.read customers.write plans.read plans.write transactions.read transactions.write webhooks.write charges.read charges.write boletos.read carnes.read\"\n}";
+            String input = "{\r\n\"grant_type\": \"authorization_code\",\r\n\"scope\": \"customers.read customers.write plans.read plans.write transactions.read transactions.write webhooks.write subscriptions.read subscriptions.write charges.read charges.write boletos.read carnes.read\"\r\n}";
 
             OutputStream os = conn.getOutputStream();
             os.write(input.getBytes());

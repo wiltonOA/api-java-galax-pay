@@ -1,10 +1,14 @@
-package br.com.visao.api_java_galax_pay;
+package br.com.visao.API_GALAXPAY;
+
+/**
+ *
+ * @author WILTON OLIVEIRA
+ */
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.net.URL;
-import org.json.JSONObject;
 import javax.net.ssl.HttpsURLConnection;
 
 public class EnviaCobrancaAPI {
@@ -15,8 +19,9 @@ public class EnviaCobrancaAPI {
 
         try {
 
-            URL url = new URL("https://api.sandbox.cloud.galaxpay.com.br/v2/charges");               
+            URL url = new URL("https://api.sandbox.cloud.galaxpay.com.br/v2/charges");
             HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
+            conn.addRequestProperty("User-Agent", "API Software ERP");
             conn.setDoOutput(true);
             conn.setRequestMethod("POST");
             conn.setRequestProperty("Content-Type", "application/json");
@@ -44,19 +49,5 @@ public class EnviaCobrancaAPI {
 
         return responseBuilder.toString();
 
-    }
-
-    public int getgalaxPayId(String cobranca) {
-        int galaxPayId = 0;
-        try {
-            JSONObject jsonObj = new JSONObject(cobranca);
-            JSONObject loc = (JSONObject) jsonObj.get("galaxPayId");
-
-            galaxPayId = loc.getInt("id");
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return galaxPayId;
     }
 }
