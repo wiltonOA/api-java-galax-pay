@@ -1,119 +1,71 @@
-package br.com.visao.api_java_galax_pay.controller;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+package br.com.visao.API_GALAXPAY;
 
+import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import br.com.visao.api_java_galax_pay.vo.CobrancaVO;
-import br.com.visao.api_java_galax_pay.vo.MetodoPgtoPixVO;
-import br.com.visao.api_java_galax_pay.vo.ParticipanteEmail;
-import br.com.visao.api_java_galax_pay.vo.ParticipanteFones;
-import br.com.visao.api_java_galax_pay.vo.ParticipanteVO;
 
 /**
  *
  * @author WILTON OLIVEIRA
  */
 public class CobrancaController {
-	
-	//Metodo que popula os dados da cobrança
-    private CobrancaVO insereDadosCobranca() {
 
-        java.sql.Date dataSql = new java.sql.Date(new Date().getTime());
-
-        CobrancaVO cob = new CobrancaVO();
-        cob.setMyId("52887");
-        cob.setValue(1010); //Valor em centavos
-        cob.setAdditionalInfo("VENDA 52887");
-        cob.setPayday(dataSql.toString());
-        cob.setPayedOutsideGalaxPay(false);
-        cob.setMainPaymentMethodId("pix");
-
-        ParticipanteVO participante = new ParticipanteVO();
-
-        participante.setMyId("1");
-        participante.setName("CONSUMIDOR");
-        participante.setDocument("65324441970");
-
-        //Adicionando lista de emails do participante
-        List<ParticipanteEmail> listaDeEmail = new ArrayList<ParticipanteEmail>();
-        ParticipanteEmail email = new ParticipanteEmail();
-        email.setEmails("teste5260email4899@galaxpay.com.br");
-        listaDeEmail.add(email);
-        participante.setEmail(listaDeEmail);
-
-        //Adicionando lista de telefones do participante
-        List<ParticipanteFones> listaDeTelefones = new ArrayList<ParticipanteFones>();
-        ParticipanteFones fones = new ParticipanteFones();
-        fones.setPhones("31983890110");
-        listaDeTelefones.add(fones);
-        participante.setPhones(listaDeTelefones);
-
-        MetodoPgtoPixVO metodoPgtoPix = new MetodoPgtoPixVO();
-        metodoPgtoPix.setFine(0);
-        metodoPgtoPix.setInterest(0);
-        metodoPgtoPix.setInstructions("");
-        metodoPgtoPix.setType("days");
-        metodoPgtoPix.setValue(1);
-
-        cob.setMetoPgtoPix(metodoPgtoPix);
-
-        cob.setParticipante(participante);
-
-        return cob;
-    }
-
-    //Metodo que pega os dados da cobranca e passa para JSON
-    public String geraCobranca() {
-
-        CobrancaVO cob = insereDadosCobranca();
-
-        JSONObject dvenda = new JSONObject();
-
+    public String insereDadosCobranca() {
+        String json = "";
         try {
-            JSONObject participante = new JSONObject();
-            JSONObject metodoPgto = new JSONObject();
-            JSONObject prazo = new JSONObject();
+            java.sql.Date dataSql = new java.sql.Date(new Date().getTime());
 
-            dvenda.put("myId", cob.getMyId());
-            dvenda.put("value", 0);
-            dvenda.put("additionalInfo", cob.getAdditionalInfo());
-            dvenda.put("payday", cob.getPayday());
-            dvenda.put("payedOutsideGalaxPay", cob.getPayedOutsideGalaxPay());
-            dvenda.put("mainPaymentMethodId", cob.getMainPaymentMethodId());
+            CobrancaVO cob = new CobrancaVO();
+            cob.setMyId("1773225");
+            cob.setValue(1165); //Valor em centavos
+            cob.setAdditionalInfo("VENDA 5288RR299");
+            cob.setPayday(dataSql.toString());
+            cob.setPayedOutsideGalaxPay(false);
+            cob.setMainPaymentMethodId("boleto");
 
-            participante.put("myId", cob.getParticipante().getMyId());
-            participante.put("name", cob.getParticipante().getName());
-            participante.put("document", cob.getParticipante().getDocument());
-            participante.put("emails", cob.getParticipante().getEmail());
-            participante.put("phones", cob.getParticipante().getPhones());
+            ParticipanteVO participante = new ParticipanteVO();
 
-            metodoPgto.put("fine", cob.getMetoPgtoPix().getFine());
-            metodoPgto.put("interest", cob.getMetoPgtoPix().getInterest());
-            metodoPgto.put("instructions", cob.getMetoPgtoPix().getInstructions());
+            participante.setMyId("1");
+            participante.setName("CONSUMIDOR");
+            participante.setDocument("65324441970");
 
-            prazo.put("type", cob.getMetoPgtoPix().getType());
-            prazo.put("value", cob.getMetoPgtoPix().getValue());
-
+            //Adicionando lista de emails do participante
+            List<String> listaDeEmail = new ArrayList<>();
+            listaDeEmail.add("teste5260email4899@galaxpay.com.br");
+            listaDeEmail.add("teste52602email4899@galaxpay.com.br");
             
-            metodoPgto.put("Deadline", prazo);
-            dvenda.put("Customer", participante);
-            dvenda.put("PaymentMethodPix", metodoPgto);
-            
+            participante.setEmail(listaDeEmail);
 
+
+            //Adicionando lista de telefones do participante
+            List<String> listaDeTelefones = new ArrayList<>();
+            listaDeTelefones.add("3140201512");
+            listaDeTelefones.add("31983890110");
+            participante.setPhones(listaDeTelefones);
+
+            PagamentoMetodoBoletoVO metodoPgtoBoleto = new PagamentoMetodoBoletoVO();
+            metodoPgtoBoleto.setFine(0);
+            metodoPgtoBoleto.setInterest(0);
+            metodoPgtoBoleto.setInstructions("Teste de emissão de boletoPIX");
+            metodoPgtoBoleto.setDeadlineDays(59);
+
+
+            cob.setMetoPgtoPix(metodoPgtoBoleto);
+            cob.setParticipante(participante);
+
+            Gson gson = new Gson();
+            json = gson.toJson(cob);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return dvenda.toString();
-
+        return json;
     }
 
 }
